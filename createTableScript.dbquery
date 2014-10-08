@@ -1,0 +1,14 @@
+use  u731608754_start;
+
+drop table if exists recepciones;
+
+
+create table recepciones
+(
+    android_id CHAR(6),
+    moment TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    latitude DOUBLE,
+    longitude DOUBLE
+);
+
+insert into recepciones values('2fsf',null, 5453.3,-56.3);
