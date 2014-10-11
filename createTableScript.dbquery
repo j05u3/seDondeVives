@@ -5,7 +5,7 @@ drop table if exists recepciones;
 
 create table recepciones
 (
-    android_id CHAR(6),
+    android_id CHAR(17),
     moment TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     latitude DOUBLE,
     longitude DOUBLE
