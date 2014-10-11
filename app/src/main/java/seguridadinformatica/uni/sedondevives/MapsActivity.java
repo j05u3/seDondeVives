@@ -45,6 +45,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MapsActivity extends FragmentActivity   implements GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
         com.google.android.gms.location.LocationListener{
@@ -97,8 +99,12 @@ public class MapsActivity extends FragmentActivity   implements GooglePlayServic
                 response = client.execute(request);
                 InputStream source = response.getEntity().getContent();
                 BufferedReader br= new BufferedReader(new InputStreamReader(source));
-
-                result = br.readLine();
+                String linea;
+                result = "";
+                while( (linea= br.readLine() ) != null )
+                {
+                    result+=linea+'\n';
+                }
                 if(client != null) client.close();
 
             } catch (Exception e) {
@@ -110,7 +116,8 @@ public class MapsActivity extends FragmentActivity   implements GooglePlayServic
 
         protected void onPostExecute(String v) {
             if(ex != null) Log.d(this.toString(),ex.toString());
-            mostrar(v);
+            if(v!=null) mostrar(v);
+            else mostrar("Conexion al servidor fallida");
         }
     }
 
@@ -120,7 +127,13 @@ public class MapsActivity extends FragmentActivity   implements GooglePlayServic
     }
 
     private String encrypt(String data) {
-        return data;
+        ApiCrypter ap= new ApiCrypter();
+        try {
+            return ApiCrypter.bytesToHex(ap.encrypt(data));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

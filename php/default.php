@@ -1,6 +1,7 @@
 <?php
     // Load in default configuration values, avoiding harcoded passwords
     require_once 'config.php';
+
     try {
         // MS SQL Server and Sybase with PDO_DBLIB
         $conn = new PDO("mysql:host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPASS);
@@ -21,6 +22,13 @@
               $count++;
               if($count %2 == 0 ) continue;
               echo "<td style='border: 1px solid blue'>";
+              if($count == 3) {
+              
+                  $date = new DateTime($valueR);
+
+                  $date->setTimezone(new DateTimeZone('America/Lima'));
+                  echo $date->format('Y-m-d H:i:s P') ; 
+              }else
               echo $valueR;
               echo "</td>";
               
@@ -38,4 +46,4 @@
       echo 'ERROR: ' . $e->getMessage();
     }
 ?>
-			
+					

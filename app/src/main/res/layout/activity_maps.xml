@@ -22,7 +22,7 @@
         android:layout_marginRight="20px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enviar ubicación"
+        android:text="Stalk me"
         android:id="@+id/btnEnviar"
         android:layout_alignTop="@+id/map"
         android:layout_alignRight="@+id/map"
