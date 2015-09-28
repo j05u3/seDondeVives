@@ -1,4 +1,4 @@
-<?
+<?php
 class ApiCrypter
 {
     #never hardcode  pass like this:
